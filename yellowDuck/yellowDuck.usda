@@ -1,0 +1,26 @@
+#usda 1.0
+def Xform "yellowDuck" (
+    prepend variantSets = "LOD"
+    variants = {
+        string LOD = "yellowDuck_LOD0"
+    }    
+)
+{
+    variantSet "LOD" = {
+        "yellowDuck_LOD0" {
+            def "yellowDuck_LOD0" (
+                prepend references = @./LODs/yellowDuck_LOD0.usda@</yellowDuck_LOD0>
+            ) {}
+        }
+        "yellowDuck_LOD1" {
+            def "yellowDuck_LOD1" (
+                prepend references = @./LODs/yellowDuck_LOD1.usda@</yellowDuck_LOD1>
+            ) {}
+        }
+        "yellowDuck_LOD2" {
+            def "yellowDuck_LOD2" (
+                prepend references = @./LODs/yellowDuck_LOD2.usda@</yellowDuck_LOD2>
+            ) {}
+        }
+    }
+}

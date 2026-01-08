@@ -1,0 +1,28 @@
+#usda 1.0
+
+def Xform "cartoonFish" (
+    prepend variantSets = "LOD"
+    variants = {
+        string LOD = "cartoonFish_LOD0"
+    }
+)
+{
+    variantSet "LOD" = {
+        "cartoonFish_LOD0" {
+            def "cartoonFish_LOD0" (
+                prepend references= @./LODs/cartoonFish_LOD0.usda@</cartoonFish_LOD0>
+            ){}
+        }
+        "cartoonFish_LOD1" {
+            def "cartoonFish_LOD1" (
+                prepend references= @./LODs/cartoonFish_LOD1.usda@</cartoonFish_LOD1>
+            ){}
+        }
+        "cartoonFish_LOD2" {
+            def "cartoonFish_LOD2" (
+                prepend references= @./LODs/cartoonFish_LOD2.usda@</cartoonFish_LOD2>
+            ){}
+        }
+    }
+}
+

@@ -1,0 +1,15 @@
+#usda 1.0
+
+def Scope "cartoonFish_LOD2"
+{
+    def Xform "cartoonFish"
+    {
+        def Cube "body"
+        {
+            float3 xformOp:scale = (117, 85.5, 36)
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+    }
+}
+

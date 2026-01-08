@@ -1,0 +1,26 @@
+{
+    "assetName": "cartoonFish.fbx",
+    "assetStructureVersion": "03.00.00",
+    "keywords": ["fish", "cute", "cartoon", "creature", "animal", "ocean", "coral", "reef"],
+    "hasTexture": false,
+    "commitHistory": [
+        {
+            "author": "geant",
+            "version": "03.00.00",
+            "timestamp": "2025-02-17T22:41:03-05",
+            "note": "Converted LODs to a variant set"
+        },
+        {
+            "author": "soominp",
+            "version": "02.00.00",
+            "timestamp": "2025-02-09T19:14:28-45",
+            "note": "Added LODs"
+        },
+        {
+            "author": "soominp",
+            "version": "01.00.00",
+            "timestamp": "2025-02-03T22:14:32-05",
+            "note": "Initial creation"
+        }
+    ]
+}

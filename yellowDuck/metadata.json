@@ -1,0 +1,26 @@
+{
+	"assetName": "yellowDuck.fbx",
+	"assetStructureVersion": "03.00.00",
+	"keywords": [ "yellow", "duck", "cute", "rubber", "toy", "bathroom" ],
+	"hasTexture": false,
+	"commitHistory": [
+		{
+			"author": "raclin",
+			"version": "03.00.00",
+			"timestamp": "2025-02-16T02:04:00-05",
+			"note": "Converted LODs to a variant set"
+		},
+		{
+			"author": "chuu",
+			"version": "02.00.00",
+			"timestamp": "2025-02-10T20:48:00-05",
+			"note": "Added LODs"
+		},
+		{
+			"author": "chuu",
+			"version": "01.00.00",
+			"timestamp": "2025-02-03T20:48:00-05",
+			"note": "Initial creation"
+		}
+	]
+}
