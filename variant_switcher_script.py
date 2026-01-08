@@ -5,6 +5,13 @@ from maya.internal.ufeSupport import ufeSelectCmd
 import ufe
 import math
 
+# Swap out prev. variant
+def select_variant_from_varaint_set(prim: Usd.Prim, variant_set_name: str, variant_name: str) -> None:
+    variant_set = prim.GetVariantSets().GetVariantSet(variant_set_name)
+    variant_set.SetVariantSelection(variant_name)
+    
+
+# Calculate obj distance from camera
 def calc_dist_from_cam(obj_pos: tuple, cam_pos: tuple) -> float:
     
     dist_x = obj_pos[0] - cam_pos[0]
@@ -15,12 +22,25 @@ def calc_dist_from_cam(obj_pos: tuple, cam_pos: tuple) -> float:
     vector_length = math.sqrt(dist_x * dist_x + dist_y * dist_y + dist_z * dist_z)
     
     return vector_length
+ 
+# Helper to set up shapePath str   
+def create_shape_path(prim: str) -> str:
     
+    output_str = '|'+ prim + '|' + prim + 'Shape'
+    return output_str
+    
+    
+# Get the scene's camera position
+camera_obj = 'camera1'
+camera_pos = cmds.xform(camera_obj, query=True, translation=True, worldSpace=True)
+
+
 
 # Switch variant Test
-proxyShapePath = '|yellowDuck|yellowDuckShape'
-primPathList = ['/yellowDuck']
+
 '''
+primPathList = ['/yellowDuck']
+
 # create a selection list
 sn = ufe.Selection()
 
@@ -36,7 +56,7 @@ ufeSelectCmd.replaceWith(sn)
 
 proxy_shapes = cmds.ls(type="mayaUsdProxyShape")
 #print(proxy_shapes)
-file_path = "C:/Users/0cfer/Downloads"
+file_path = "C:/Users/0cfer/Documents/upenn/cs7000/Camera_based_LOD_tool"
 
 variant_assets = []
 
@@ -63,6 +83,9 @@ for node in proxy_shapes:
 # Create a list of these assets that are visible to camera
 
 
+# get shapePath
+proxyShapePath = create_shape_path('yellowDuck')
+
 # Get the bbox of the shape node
 bbox = cmds.exactWorldBoundingBox(proxyShapePath, ignoreInvisible=False)
 xmin, ymin, zmin, xmax, ymax, zmax = bbox[0], bbox[1], bbox[2], bbox[3], bbox[4], bbox[5]
@@ -71,17 +94,18 @@ center_x = xmin+xmax / 2
 center_y = ymin+ymax / 2
 center_z = zmin+zmax / 2
 
-# Get the scene's camera position
-camera_obj = 'camera1'
-camera_pos = cmds.xform(camera_obj, query=True, translation=True, worldSpace=True)
-
 obj_pos = (center_x, center_y, center_z)
 
 dist = calc_dist_from_cam(obj_pos, camera_pos)
-
-print("Printing Distance")
-print(dist)
-
+'''
+# far awawy, reduce detail
+if dist > 35:
+    # assign LOD1 to asset
+    
+elif dist > 50:
+    #assign LOD2 to asset
+'''
+    
 
 '''
 # Calculate the distance from camera
@@ -96,12 +120,6 @@ for asset in variant_assets:
     
     # Get center bounding box & compute centerpoint
 '''
-
-# Swap out the variant
-def select_variant_from_varaint_set(prim: Usd.Prim, variant_set_name: str, variant_name: str) -> None:
-    variant_set = prim.GetVariantSets().GetVariantSet(variant_set_name)
-    variant_set.SetVariantSelection(variant_name)
-    
 
 for asset in variant_assets:
     prim = "/" + asset
