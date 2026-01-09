@@ -52,6 +52,7 @@ ufeSelectCmd.replaceWith(sn)
 
 '''
 
+
 # Select all the usd proxy shape nodes in the scene
 
 proxy_shapes = cmds.ls(type="mayaUsdProxyShape")
@@ -81,57 +82,45 @@ for node in proxy_shapes:
 
 
 # Create a list of these assets that are visible to camera
-
-
-# get shapePath
-proxyShapePath = create_shape_path('yellowDuck')
-
-# Get the bbox of the shape node
-bbox = cmds.exactWorldBoundingBox(proxyShapePath, ignoreInvisible=False)
-xmin, ymin, zmin, xmax, ymax, zmax = bbox[0], bbox[1], bbox[2], bbox[3], bbox[4], bbox[5]
-
-center_x = xmin+xmax / 2
-center_y = ymin+ymax / 2
-center_z = zmin+zmax / 2
-
-obj_pos = (center_x, center_y, center_z)
-
-dist = calc_dist_from_cam(obj_pos, camera_pos)
-'''
-# far awawy, reduce detail
-if dist > 35:
-    # assign LOD1 to asset
     
-elif dist > 50:
-    #assign LOD2 to asset
-'''
-    
-
-'''
-# Calculate the distance from camera
+# Loop over asset list and swap variants according to distance
 for asset in variant_assets:
-    
-    proxyShapePath = '|'+asset+'|'+asset+'Shape'
-    primPath = '/'+asset
 
-    ufePath = ufe.PathString.path(proxyShapePath + ',' + primPath)
-    ufeSceneItem = ufe.Hierarchy.createItem(ufePath)
-    ufeSelectCmd.replaceWith(ufeSceneItem)
+    shapePath = create_shape_path(asset)
     
-    # Get center bounding box & compute centerpoint
-'''
-
-for asset in variant_assets:
+    # Get the bbox of the shape node
+    bbox = cmds.exactWorldBoundingBox(shapePath, ignoreInvisible=False)
+    xmin, ymin, zmin, xmax, ymax, zmax = bbox[0], bbox[1], bbox[2], bbox[3], bbox[4], bbox[5]
+    
+    center_x = xmin+xmax / 2
+    center_y = ymin+ymax / 2
+    center_z = zmin+zmax / 2
+    
+    obj_pos = (center_x, center_y, center_z)
+    dist = calc_dist_from_cam(obj_pos, camera_pos)
+    
+    var_swap = "_LOD0"
+    
+    # far awawy, reduce detail
+    if dist > 15:
+        # assign LOD1 to asset
+        var_swap = "_LOD1"
+        
+    if dist > 30:
+        #assign LOD2 to asset
+        var_swap = "_LOD2"
+    
+    '''
+    Swapping out the variant
+    '''
+    
     prim = "/" + asset
-    
     usd_file_path = file_path + prim + prim + ".usda"
     
     # Open a stage to the file
     stage = Usd.Stage.Open(usd_file_path)
     
     if stage:
-        #default_prim = stage.GetDefaultPrim()
         target_prim = stage.GetPrimAtPath(Sdf.Path(prim))    
         
-        
-    select_variant_from_varaint_set(target_prim, "LOD", asset + "_LOD2")
+    select_variant_from_varaint_set(target_prim, "LOD", asset + var_swap)
