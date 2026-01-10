@@ -99,8 +99,11 @@ for asset in variant_assets:
     obj_pos = (center_x, center_y, center_z)
     dist = calc_dist_from_cam(obj_pos, camera_pos)
     
-    var_swap = "_LOD0"
+    var_swap = ""
     
+    if dist < 15:
+        var_swap = "_LOD0"
+        
     # far awawy, reduce detail
     if dist > 15:
         # assign LOD1 to asset
