@@ -1,9 +1,10 @@
 from pxr import Usd, Tf, UsdGeom, Sdf
 from typing import Union
 import maya.cmds as cmds
-from maya.internal.ufeSupport import ufeSelectCmd
 import ufe
 import math
+import maya.OpenMayaUI as OpenMayaUI
+import maya.OpenMaya as OpenMaya
 
 # Swap out prev. variant
 def select_variant_from_varaint_set(prim: Usd.Prim, variant_set_name: str, variant_name: str) -> None:
@@ -28,29 +29,34 @@ def create_shape_path(prim: str) -> str:
     
     output_str = '|'+ prim + '|' + prim + 'Shape'
     return output_str
+
+def world_to_screen_space(world_pos: OpenMaya.MPoint, proj_matrix: OpenMaya.MMatrix, view_matrix: OpenMaya.MMatrix)-> OpenMaya.MVector:
     
+    # ViewProj Mat * P (combined into one projection matrix)
+    # Convert from world to camera space
+    vert_space = world_pos * view_matrix
+    cam_space = vert_space * proj_matrix
     
+    tmp_space = [cam_space[0],cam_space[1],cam_space[2],cam_space[3]]
+      
+    # Convert to screen space
+    tmp_space[0] /= cam_space[3]
+    tmp_space[1] /= cam_space[3]
+    tmp_space[2] /= cam_space[3]
+    
+    out_point = OpenMaya.MVector(tmp_space[0],tmp_space[1],tmp_space[2])
+    
+    return out_point
+
 # Get the scene's camera position
 camera_obj = 'camera1'
 camera_pos = cmds.xform(camera_obj, query=True, translation=True, worldSpace=True)
 
-
-
-# Switch variant Test
-
-'''
-primPathList = ['/yellowDuck']
-
-# create a selection list
-sn = ufe.Selection()
-
-for primPath in primPathList:
-    ufePath = ufe.PathString.path(proxyShapePath + ',' + primPath)
-    ufeSceneItem = ufe.Hierarchy.createItem(ufePath)
-    sn.append(ufeSceneItem)
-ufeSelectCmd.replaceWith(sn)
-
-'''
+view = OpenMayaUI.M3dView.active3dView()
+mayaModelMatrix = OpenMaya.MMatrix()
+view.modelViewMatrix(mayaModelMatrix)
+mayaProjMatrix = OpenMaya.MMatrix()
+view.projectionMatrix(mayaProjMatrix)
 
 
 # Select all the usd proxy shape nodes in the scene
@@ -81,7 +87,7 @@ for node in proxy_shapes:
         variant_assets.append(base_name)
 
 
-# Create a list of these assets that are visible to camera
+# Cull assets from list NOT visible to camera
     
 # Loop over asset list and swap variants according to distance
 for asset in variant_assets:
@@ -92,14 +98,45 @@ for asset in variant_assets:
     bbox = cmds.exactWorldBoundingBox(shapePath, ignoreInvisible=False)
     xmin, ymin, zmin, xmax, ymax, zmax = bbox[0], bbox[1], bbox[2], bbox[3], bbox[4], bbox[5]
     
+    lower_corner = OpenMaya.MPoint(xmin,ymin,zmin,1)
+    upper_corner = OpenMaya.MPoint(xmax,ymax,zmax,1)
+    min_P = world_to_screen_space(lower_corner, mayaProjMatrix, mayaModelMatrix)
+    max_P = world_to_screen_space(upper_corner, mayaProjMatrix, mayaModelMatrix)
+
+    width_P = max_P.x - min_P.x
+    height_P = max_P.y - min_P.y
+    obj_screen_area = width_P * height_P
+    print(obj_screen_area)
+    
+    bbox_percent = (obj_screen_area / 1) * 100
+    
+    print(bbox_percent)
+
+    var_swap = ""
+    
+    # Screen Space Percentage
+    # Set LOD thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2, etc.
+    
+    if bbox_percent < 1:
+        var_swap = "_LOD2"
+        
+    # far awawy, reduce detail
+    if bbox_percent > 1:
+        # assign LOD1 to asset
+        var_swap = "_LOD1"
+        
+    if bbox_percent > 10:
+        #assign LOD2 to asset
+        var_swap = "_LOD0"
+
+    '''
+    # Distance Based
     center_x = xmin+xmax / 2
     center_y = ymin+ymax / 2
     center_z = zmin+zmax / 2
     
     obj_pos = (center_x, center_y, center_z)
     dist = calc_dist_from_cam(obj_pos, camera_pos)
-    
-    var_swap = ""
     
     if dist < 15:
         var_swap = "_LOD0"
@@ -112,6 +149,7 @@ for asset in variant_assets:
     if dist > 30:
         #assign LOD2 to asset
         var_swap = "_LOD2"
+    '''
     
     '''
     Swapping out the variant
