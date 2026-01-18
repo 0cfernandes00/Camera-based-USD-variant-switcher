@@ -1,6 +1,7 @@
 # Maya USD Camera-based LOD Variant Switcher
 
-Personal Project completed Winter 2026 in Autodesk Maya wiht Python USD API 
+Personal Project began over Winter 2026 in Autodesk Maya wiht Python USD API.
+This project was inspired from my CIS 7000 Production Pipelines professor Rebecca Hallac and my TD friend Julia DeLaney.
 
 ## Demo
 
@@ -8,7 +9,6 @@ Distance Based
 
 ![Tool Demo](variant_update_new.gif)
 
-## Introduction
 
 ### Distance Based
 
