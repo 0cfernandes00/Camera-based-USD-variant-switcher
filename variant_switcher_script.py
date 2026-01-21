@@ -42,10 +42,13 @@ def create_shape_path(prim: str) -> str:
     
 def find_MinMax(pointsList: tuple) -> tuple:
     
-    x_min, y_min = 100000
-    x_max, y_max = -10000
-    
+    x_min = 100000
+    y_min = 100000
+    x_max = -100000
+    y_max = -10000
+
     for i in range(8):
+       
         x = pointsList[i][0]
         y = pointsList[i][1]
         if x < x_min:
@@ -60,14 +63,22 @@ def find_MinMax(pointsList: tuple) -> tuple:
     result = (x_min,y_min,x_max,y_max)      
     return result
 
-def world_to_screen_space(world_pos: OpenMaya.MPoint)-> OpenMaya.MVector:
+def world_to_screen_space(world_pos: OpenMaya.MPoint)-> tuple:
     
-    # ViewProj Mat * P (combined into one projection matrix)
+    inside = True
+    
     # Convert from world to camera space
+    #don't need model matrix because points are already in world
     vert_space = world_pos * mayaModelMatrix
     cam_space = vert_space * mayaProjMatrix
     
     tmp_space = [cam_space[0],cam_space[1],cam_space[2],cam_space[3]]
+    
+    print(cam_space[3])
+    
+    if (cam_space[3] <= 0):
+        inside = False
+        return (0, 0, 0, inside)
       
     # Convert to screen space
     tmp_space[0] /= cam_space[3]
@@ -76,14 +87,14 @@ def world_to_screen_space(world_pos: OpenMaya.MPoint)-> OpenMaya.MVector:
     
     out_point = OpenMaya.MVector(tmp_space[0],tmp_space[1],tmp_space[2])
     
-    '''
-    inside = True
-    if((out_point[0] > 1) or (out_point[0] < -1)):
-        if((out_point[1] > 1) or (out_point[1] < -1)):
-            if((out_point[2] > 1) or (out_point[2] < -1)):
-                inside = False
-    '''
-    return out_point
+    print(out_point[0])
+    print(out_point[1])
+    
+    if (out_point[0] > 1 or out_point[0] < -1):
+        if (out_point[1] > 1 or out_point[1] < -1):
+            inside = False
+    
+    return (out_point[0], out_point[1], out_point[2], inside)
 
 
 # Select all the usd proxy shape nodes in the scene
@@ -146,74 +157,91 @@ for asset in variant_assets:
     xform_g = world_to_screen_space(g)
     xform_h = world_to_screen_space(h)
     
-    xform_list = (xform_a,xform_b,xform_c,xform_d,xform_e,xform_f,xform_g,xform_h)
-    min_x,min_y,max_x,max_y = find_MinMax(xform_list)
-
-
-    #min_P = world_to_screen_space(lower_corner)
-    #max_P = world_to_screen_space(upper_corner)
-
-    #width_P = abs(max_P.x - min_P.x)
-    #height_P = abs(max_P.y - min_P.y)
-    width_P = abs(max_x - min_x)
-    height_P = abs(max_y - min_y)
-    obj_screen_area = width_P * height_P
-    print(obj_screen_area)
+    print(xform_a[3])
+    print(xform_b[3])
+    print(xform_c[3])
+    print(xform_d[3])
+    print(xform_e[3])
+    print(xform_f[3])
+    print(xform_g[3])
+    print(xform_h[3])
     
-    bbox_percent = (obj_screen_area / 1) * 100
-    
-    print(bbox_percent)
-
-    var_swap = ""
-    
-    # Screen Space Percentage
-    # Set LOD thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2, etc.
-    
-    if bbox_percent < 1:
-        var_swap = "_LOD2"
+    if (not xform_a[3] and not xform_b[3] and not xform_c[3] and not xform_d[3] and not xform_e[3] and not xform_f[3] and not xform_g[3] and not xform_h[3]):
+        # completely outside view frustum, skip
+        print("outside view")
+        select_variant_from_varaint_set(target_prim, "LOD", asset + "_LOD2")
+    else:
+        # within view frustum
         
-    # far awawy, reduce detail
-    if bbox_percent > 1:
-        # assign LOD1 to asset
-        var_swap = "_LOD1"
+        xform_list = (xform_a,xform_b,xform_c,xform_d,xform_e,xform_f,xform_g,xform_h)
+        min_x,min_y,max_x,max_y = find_MinMax(xform_list)
         
-    if bbox_percent > 10:
-        #assign LOD2 to asset
-        var_swap = "_LOD0"
+        # bring into 0-1 space
+        min_x = min_x * 0.5 + 0.5
+        min_y = min_y * 0.5 + 0.5
+        max_x = max_x * 0.5 + 0.5
+        max_y = max_y * 0.5 + 0.5
+        
 
-    '''
-    # Distance Based
-    center_x = xmin+xmax / 2
-    center_y = ymin+ymax / 2
-    center_z = zmin+zmax / 2
-    
-    obj_pos = (center_x, center_y, center_z)
-    dist = calc_dist_from_cam(obj_pos, camera_pos)
-    
-    if dist < 15:
-        var_swap = "_LOD0"
+        width_P = abs(max_x - min_x)
+        height_P = abs(max_y - min_y)
+        obj_screen_area = width_P * height_P
+        print(obj_screen_area)
         
-    # far awawy, reduce detail
-    if dist > 15:
-        # assign LOD1 to asset
-        var_swap = "_LOD1"
+        bbox_percent = (obj_screen_area / 1) * 100
         
-    if dist > 30:
-        #assign LOD2 to asset
-        var_swap = "_LOD2"
-    '''
-    
-    '''
-    Swapping out the variant
-    '''
-    
-    prim = "/" + asset
-    usd_file_path = file_path + prim + prim + ".usda"
-    
-    # Open a stage to the file
-    stage = Usd.Stage.Open(usd_file_path)
-    
-    if stage:
-        target_prim = stage.GetPrimAtPath(Sdf.Path(prim))    
+        print(bbox_percent)
+
+        var_swap = ""
         
-    select_variant_from_varaint_set(target_prim, "LOD", asset + var_swap)
+        # Screen Space Percentage
+        # Set LOD thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2, etc.
+        
+        if bbox_percent < 1:
+            var_swap = "_LOD2"
+            
+        # far awawy, reduce detail
+        if bbox_percent > 1:
+            # assign LOD1 to asset
+            var_swap = "_LOD1"
+            
+        if bbox_percent > 10:
+            #assign LOD2 to asset
+            var_swap = "_LOD0"
+
+        '''
+        # Distance Based
+        center_x = xmin+xmax / 2
+        center_y = ymin+ymax / 2
+        center_z = zmin+zmax / 2
+        
+        obj_pos = (center_x, center_y, center_z)
+        dist = calc_dist_from_cam(obj_pos, camera_pos)
+        
+        if dist < 15:
+            var_swap = "_LOD0"
+            
+        # far awawy, reduce detail
+        if dist > 15:
+            # assign LOD1 to asset
+            var_swap = "_LOD1"
+            
+        if dist > 30:
+            #assign LOD2 to asset
+            var_swap = "_LOD2"
+        '''
+        
+        '''
+        Swapping out the variant
+        '''
+        
+        prim = "/" + asset
+        usd_file_path = file_path + prim + prim + ".usda"
+        
+        # Open a stage to the file
+        stage = Usd.Stage.Open(usd_file_path)
+        
+        if stage:
+            target_prim = stage.GetPrimAtPath(Sdf.Path(prim))    
+            
+        select_variant_from_varaint_set(target_prim, "LOD", asset + var_swap)
