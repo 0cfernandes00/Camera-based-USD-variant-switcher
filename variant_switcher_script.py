@@ -6,6 +6,16 @@ import math
 import maya.OpenMayaUI as OpenMayaUI
 import maya.OpenMaya as OpenMaya
 
+# Get the scene's camera position
+camera_obj = 'camera1'
+camera_pos = cmds.xform(camera_obj, query=True, translation=True, worldSpace=True)
+
+view = OpenMayaUI.M3dView.active3dView()
+mayaModelMatrix = OpenMaya.MMatrix()
+view.modelViewMatrix(mayaModelMatrix)
+mayaProjMatrix = OpenMaya.MMatrix()
+view.projectionMatrix(mayaProjMatrix)
+
 # Swap out prev. variant
 def select_variant_from_varaint_set(prim: Usd.Prim, variant_set_name: str, variant_name: str) -> None:
     variant_set = prim.GetVariantSets().GetVariantSet(variant_set_name)
@@ -29,13 +39,33 @@ def create_shape_path(prim: str) -> str:
     
     output_str = '|'+ prim + '|' + prim + 'Shape'
     return output_str
+    
+def find_MinMax(pointsList: tuple) -> tuple:
+    
+    x_min, y_min = 100000
+    x_max, y_max = -10000
+    
+    for i in range(8):
+        x = pointsList[i][0]
+        y = pointsList[i][1]
+        if x < x_min:
+            x_min = x
+        if y < y_min:
+            y_min = y
+        if x > x_max:
+            x_max = x
+        if y > y_max:
+            y_max = y
+      
+    result = (x_min,y_min,x_max,y_max)      
+    return result
 
-def world_to_screen_space(world_pos: OpenMaya.MPoint, proj_matrix: OpenMaya.MMatrix, view_matrix: OpenMaya.MMatrix)-> OpenMaya.MVector:
+def world_to_screen_space(world_pos: OpenMaya.MPoint)-> OpenMaya.MVector:
     
     # ViewProj Mat * P (combined into one projection matrix)
     # Convert from world to camera space
-    vert_space = world_pos * view_matrix
-    cam_space = vert_space * proj_matrix
+    vert_space = world_pos * mayaModelMatrix
+    cam_space = vert_space * mayaProjMatrix
     
     tmp_space = [cam_space[0],cam_space[1],cam_space[2],cam_space[3]]
       
@@ -46,17 +76,14 @@ def world_to_screen_space(world_pos: OpenMaya.MPoint, proj_matrix: OpenMaya.MMat
     
     out_point = OpenMaya.MVector(tmp_space[0],tmp_space[1],tmp_space[2])
     
+    '''
+    inside = True
+    if((out_point[0] > 1) or (out_point[0] < -1)):
+        if((out_point[1] > 1) or (out_point[1] < -1)):
+            if((out_point[2] > 1) or (out_point[2] < -1)):
+                inside = False
+    '''
     return out_point
-
-# Get the scene's camera position
-camera_obj = 'camera1'
-camera_pos = cmds.xform(camera_obj, query=True, translation=True, worldSpace=True)
-
-view = OpenMayaUI.M3dView.active3dView()
-mayaModelMatrix = OpenMaya.MMatrix()
-view.modelViewMatrix(mayaModelMatrix)
-mayaProjMatrix = OpenMaya.MMatrix()
-view.projectionMatrix(mayaProjMatrix)
 
 
 # Select all the usd proxy shape nodes in the scene
@@ -100,11 +127,36 @@ for asset in variant_assets:
     
     lower_corner = OpenMaya.MPoint(xmin,ymin,zmin,1)
     upper_corner = OpenMaya.MPoint(xmax,ymax,zmax,1)
-    min_P = world_to_screen_space(lower_corner, mayaProjMatrix, mayaModelMatrix)
-    max_P = world_to_screen_space(upper_corner, mayaProjMatrix, mayaModelMatrix)
+    
+    a = OpenMaya.MPoint(xmin,ymin,zmin,1)
+    b = OpenMaya.MPoint(xmin,ymin,zmax,1)
+    c = OpenMaya.MPoint(xmin,ymax,zmin,1)
+    d = OpenMaya.MPoint(xmax,ymin,zmin,1)
+    e = OpenMaya.MPoint(xmax,ymax,zmax,1)
+    f = OpenMaya.MPoint(xmax,ymax,zmin,1)
+    g = OpenMaya.MPoint(xmax,ymin,zmax,1)
+    h = OpenMaya.MPoint(xmin,ymax,zmax,1)
+    
+    xform_a = world_to_screen_space(a)
+    xform_b = world_to_screen_space(b)
+    xform_c = world_to_screen_space(c)
+    xform_d = world_to_screen_space(d)
+    xform_e = world_to_screen_space(e)
+    xform_f = world_to_screen_space(f)
+    xform_g = world_to_screen_space(g)
+    xform_h = world_to_screen_space(h)
+    
+    xform_list = (xform_a,xform_b,xform_c,xform_d,xform_e,xform_f,xform_g,xform_h)
+    min_x,min_y,max_x,max_y = find_MinMax(xform_list)
 
-    width_P = max_P.x - min_P.x
-    height_P = max_P.y - min_P.y
+
+    #min_P = world_to_screen_space(lower_corner)
+    #max_P = world_to_screen_space(upper_corner)
+
+    #width_P = abs(max_P.x - min_P.x)
+    #height_P = abs(max_P.y - min_P.y)
+    width_P = abs(max_x - min_x)
+    height_P = abs(max_y - min_y)
     obj_screen_area = width_P * height_P
     print(obj_screen_area)
     
