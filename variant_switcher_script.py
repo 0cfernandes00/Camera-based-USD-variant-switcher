@@ -9,12 +9,35 @@ import maya.OpenMaya as OpenMaya
 # Get the scene's camera position
 camera_obj = 'camera1'
 camera_pos = cmds.xform(camera_obj, query=True, translation=True, worldSpace=True)
+focal_length = cmds.getAttr(camera_obj + '.focalLength')
+focus_dist = cmds.getAttr(camera_obj + '.focusDistance')
+fstop = cmds.getAttr(camera_obj + '.fStop')
+circleOfConfusion = 10
+
+
+print("Focal length: " + str(focal_length))
+print("Focus dist: " + str(focus_dist))
+print("Fstop: " + str(fstop))
+
 
 view = OpenMayaUI.M3dView.active3dView()
 mayaModelMatrix = OpenMaya.MMatrix()
 view.modelViewMatrix(mayaModelMatrix)
 mayaProjMatrix = OpenMaya.MMatrix()
 view.projectionMatrix(mayaProjMatrix)
+
+# DOF calculation
+def calc_dof_blur(obj_dist: float) -> float:
+    obj_dist_mm = obj_dist * 10.0
+    focus_dist_mm = focus_dist * 10.0
+    
+    aperture = focal_length / fstop
+    
+    denominator = obj_dist_mm * (focus_dist_mm - focal_length)
+    
+    blur = abs(aperture * focal_length * (obj_dist_mm - focus_dist_mm) / denominator)
+        
+    return blur
 
 # Swap out prev. variant
 def select_variant_from_varaint_set(prim: Usd.Prim, variant_set_name: str, variant_name: str) -> None:
@@ -26,7 +49,7 @@ def select_variant_from_varaint_set(prim: Usd.Prim, variant_set_name: str, varia
 def calc_dist_from_cam(obj_pos: tuple, cam_pos: tuple) -> float:
     
     dist_x = obj_pos[0] - cam_pos[0]
-    dist_y = obj_pos[1] - cam_pos[0]
+    dist_y = obj_pos[1] - cam_pos[1]
     dist_z = obj_pos[2] - cam_pos[2]
     
     # find the length
@@ -65,20 +88,12 @@ def find_MinMax(pointsList: tuple) -> tuple:
 
 def world_to_screen_space(world_pos: OpenMaya.MPoint)-> tuple:
     
-    inside = True
-    
+    # ViewProj Mat * P (combined into one projection matrix)
     # Convert from world to camera space
-    #don't need model matrix because points are already in world
     vert_space = world_pos * mayaModelMatrix
     cam_space = vert_space * mayaProjMatrix
     
     tmp_space = [cam_space[0],cam_space[1],cam_space[2],cam_space[3]]
-    
-    print(cam_space[3])
-    
-    if (cam_space[3] <= 0):
-        inside = False
-        return (0, 0, 0, inside)
       
     # Convert to screen space
     tmp_space[0] /= cam_space[3]
@@ -87,12 +102,11 @@ def world_to_screen_space(world_pos: OpenMaya.MPoint)-> tuple:
     
     out_point = OpenMaya.MVector(tmp_space[0],tmp_space[1],tmp_space[2])
     
-    print(out_point[0])
-    print(out_point[1])
-    
-    if (out_point[0] > 1 or out_point[0] < -1):
-        if (out_point[1] > 1 or out_point[1] < -1):
-            inside = False
+    inside = True
+    if((out_point[0] > 1) or (out_point[0] < -1)):
+        if((out_point[1] > 1) or (out_point[1] < -1)):
+            if((out_point[2] > 1) or (out_point[2] < -1)):
+                inside = False
     
     return (out_point[0], out_point[1], out_point[2], inside)
 
@@ -157,15 +171,6 @@ for asset in variant_assets:
     xform_g = world_to_screen_space(g)
     xform_h = world_to_screen_space(h)
     
-    print(xform_a[3])
-    print(xform_b[3])
-    print(xform_c[3])
-    print(xform_d[3])
-    print(xform_e[3])
-    print(xform_f[3])
-    print(xform_g[3])
-    print(xform_h[3])
-    
     if (not xform_a[3] and not xform_b[3] and not xform_c[3] and not xform_d[3] and not xform_e[3] and not xform_f[3] and not xform_g[3] and not xform_h[3]):
         # completely outside view frustum, skip
         print("outside view")
@@ -182,7 +187,34 @@ for asset in variant_assets:
         max_x = max_x * 0.5 + 0.5
         max_y = max_y * 0.5 + 0.5
         
+        var_swap = ""
 
+        # Distance Based
+        center_x = xmin+xmax / 2
+        center_y = ymin+ymax / 2
+        center_z = zmin+zmax / 2
+        
+        obj_pos = (center_x, center_y, center_z)
+        dist = calc_dist_from_cam(obj_pos, camera_pos)
+
+        obj_dof = calc_dof_blur(dist)
+        print("Dist from camera: " + str(dist))
+        print("DOF blur: " + str(obj_dof))
+
+        distance_from_focus = abs(dist - focus_dist) / focus_dist
+        print("Distance from focus: " + str(distance_from_focus))
+
+        if distance_from_focus < 0.2:
+            var_swap = "_LOD0"
+        elif distance_from_focus < 0.5:
+            var_swap = "_LOD1"
+        else:
+            var_swap = "_LOD2"
+
+        '''
+        # Screen Space Percentage
+        # Set LOD thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2, etc.
+        
         width_P = abs(max_x - min_x)
         height_P = abs(max_y - min_y)
         obj_screen_area = width_P * height_P
@@ -192,11 +224,6 @@ for asset in variant_assets:
         
         print(bbox_percent)
 
-        var_swap = ""
-        
-        # Screen Space Percentage
-        # Set LOD thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2, etc.
-        
         if bbox_percent < 1:
             var_swap = "_LOD2"
             
@@ -208,16 +235,9 @@ for asset in variant_assets:
         if bbox_percent > 10:
             #assign LOD2 to asset
             var_swap = "_LOD0"
+        '''
 
         '''
-        # Distance Based
-        center_x = xmin+xmax / 2
-        center_y = ymin+ymax / 2
-        center_z = zmin+zmax / 2
-        
-        obj_pos = (center_x, center_y, center_z)
-        dist = calc_dist_from_cam(obj_pos, camera_pos)
-        
         if dist < 15:
             var_swap = "_LOD0"
             
