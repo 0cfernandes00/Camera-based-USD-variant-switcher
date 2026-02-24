@@ -19,6 +19,12 @@ The LOD is determined by the object's distance from camera. Distance thresholds:
 The LOD value is determined by projecting the world coordinates back into screen space and calculating what percentage the screen space bounding box occupies.
 The baseline is set to the following thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2
 
+### Depth of Field
+
+I approximate the depth of field for the object to calculate how blurry the object will be at render time to generate an LOD for this parameter.
+
+abs( (focal_length / fstop) * focal_length * (obj_dist - focus_dist) / obj_dist * (focus_dist - focal_length) )
+
 ### Frustum Culling
 
 Objects not visible to camera are set to the lowest resolution.
