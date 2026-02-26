@@ -1,0 +1,26 @@
+{
+  "assetName": "cafeTable.fbx",
+  "assetStructureVersion": "03.00.00",
+  "keywords": ["cafe", "table", "furniture"],
+  "hasTexture": false,
+  "commitHistory": [
+      {
+          "author": "fernc",
+          "version": "03.00.00",
+          "timestamp": "2025-02-14T18:46:00-05",
+          "note": "Converted LODs to a variant set"
+      }, 
+      {
+          "author": "willcai",
+          "version": "02.00.00",
+          "timestamp": "2025-02-03T19:30:00-05",
+          "note": "Added LODs"
+      },
+      {
+          "author": "willcai",
+          "version": "01.00.00",
+          "timestamp": "2024-11-03T22:19:00-05",
+          "note": "Initial creation"
+      }
+  ]
+}

@@ -1,0 +1,20 @@
+#usda 1.0
+
+def Xform "teapot_LOD2"
+{
+    def Sphere "body"
+    {
+        float3 xformOp:scale = (12, 10, 12)
+        double3 xformOp:translate = (0, 10, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cylinder "spout"
+    {
+        float3 xformOp:rotateXYZ = (0, 90, -50)
+        float3 xformOp:scale = (3, 3, 6)
+        double3 xformOp:translate = (-13, 12, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+    }
+}
+

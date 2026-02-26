@@ -1,0 +1,27 @@
+#usda 1.0
+
+def Xform "cafeTable" (
+    prepend variantSets = "LOD"    
+    variants={
+        string LOD = "cafeTable_LOD0"
+    }
+)
+{
+    variantSet "LOD" = {
+        "cafeTable_LOD0" {
+            def "cafeTable_LOD0" (
+                prepend references = @LODs/cafeTable_LOD0.usda@</cafeTable_LOD0>
+            ){}
+        }
+        "cafeTable_LOD1" {
+            def "cafeTable_LOD1" (
+                prepend references = @LODs/cafeTable_LOD1.usda@</cafeTable_LOD1>
+            ){}
+        }
+        "cafeTable_LOD2" {
+            def "cafeTable_LOD2" (
+                prepend references = @LODs/cafeTable_LOD2.usda@</cafeTable_LOD2>
+            ){}
+        }
+    }
+}

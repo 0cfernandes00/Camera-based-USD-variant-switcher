@@ -1,0 +1,27 @@
+#usda 1.0
+
+def Xform "bookStack" (
+    prepend variantSets = "LOD"    
+    variants={
+        string LOD = "bookStack_LOD0"
+    }
+)
+{
+    variantSet "LOD" = {
+        "bookStack_LOD0" {
+            def "bookStack_LOD0" (
+                prepend references = @LODs/bookStack_LOD0.usda@</bookStack_LOD0>
+            ) {}
+        }
+        "bookStack_LOD1" {
+            def "bookStack_LOD1" (
+                prepend references = @LODs/bookStack_LOD1.usda@</bookStack_LOD1>
+            ) {}
+        }
+        "bookStack_LOD2" {
+            def "bookStack_LOD2" (
+                prepend references = @LODs/bookStack_LOD2.usda@</bookStack_LOD2>
+            ) {}
+        }
+    }
+}

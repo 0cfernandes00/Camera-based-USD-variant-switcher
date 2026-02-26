@@ -45,6 +45,30 @@ def select_variant_from_varaint_set(prim: Usd.Prim, variant_set_name: str, varia
     variant_set.SetVariantSelection(variant_name)
     
 
+# Check distance from one frame to antoher, velocity based LOD switching
+def velocity_change(lower_corner: tuple, upper_corner: tuple, shapePath: str) -> float:
+
+    currTime = cmds.currentTime(q=True)
+    cmds.currentTime(12, edit = True)
+
+    moved_bbox = cmds.exactWorldBoundingBox(shapePath, ignoreInvisible=False)
+    xmin, ymin, zmin, xmax, ymax, zmax = moved_bbox[0], moved_bbox[1], moved_bbox[2], moved_bbox[3], moved_bbox[4], moved_bbox[5]
+    
+    moved_upper_corner = OpenMaya.MPoint(xmax,ymax,zmax,1)
+    max_update = moved_upper_corner - upper_corner
+
+    result = math.sqrt(max_update[0] * max_update[0] + max_update[1] * max_update[1] + max_update[2] * max_update[2])
+
+    cmds.currentTime(currTime, edit = True)
+
+    """
+    24 frames/second
+    walking speed ~ 140 cm/s, running speed ~ 300 cm/s
+    12 frames -> 70 cm, 150 cm 
+    """
+
+    return result
+
 # Calculate obj distance from camera
 def calc_dist_from_cam(obj_pos: tuple, cam_pos: tuple) -> float:
     
@@ -195,6 +219,17 @@ for asset in variant_assets:
         center_z = zmin+zmax / 2
         
         obj_pos = (center_x, center_y, center_z)
+        vel_change = velocity_change(lower_corner, upper_corner, shapePath)
+        print("vel_change: " + str(vel_change))
+
+        if (vel_change < 7.5): 
+            var_swap = "_LOD0"         # object is stationary
+        elif (vel_change > 7.5):
+            var_swap = "_LOD1"         # object is at walking speed
+        if (vel_change > 15) :
+            var_swap = "_LOD2"         # object is at running speed
+
+        '''
         dist = calc_dist_from_cam(obj_pos, camera_pos)
 
         obj_dof = calc_dof_blur(dist)
@@ -211,7 +246,7 @@ for asset in variant_assets:
         else:
             var_swap = "_LOD2"
 
-        '''
+
         # Screen Space Percentage
         # Set LOD thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2, etc.
         
@@ -265,3 +300,4 @@ for asset in variant_assets:
             target_prim = stage.GetPrimAtPath(Sdf.Path(prim))    
             
         select_variant_from_varaint_set(target_prim, "LOD", asset + var_swap)
+

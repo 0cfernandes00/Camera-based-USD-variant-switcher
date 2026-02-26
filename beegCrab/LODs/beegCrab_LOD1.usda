@@ -1,0 +1,218 @@
+#usda 1.0
+
+def Xform "beegCrab_LOD1"
+{
+    def Sphere "body"
+    {
+        float3 xformOp:scale = (1, 0.30004883, 1)
+        uniform token[] xformOpOrder = ["xformOp:scale"]
+    }
+
+    def "legs"
+    {
+        def Cone "feet_0"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (-4.25, -2.5, -3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_0"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = -30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (-3.80078125, -1.7998046875, -3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Cone "feet_1"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (-5.25, -2.5, -1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_1"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = -30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (-4.80078125, -1.7998046875, -1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Cone "feet_2"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (-5.25, -2.5, 1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_2"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = -30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (-4.80078125, -1.7998046875, 1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Cone "feet_3"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (-4.25, -2.5, 3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_3"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = -30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (-3.80078125, -1.7998046875, 3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Cone "feet_4"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (4.25, -2.5, -3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_4"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = 30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (3.80078125, -1.7998046875, -3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Cone "feet_5"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (5.25, -2.5, -1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_5"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = 30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (4.80078125, -1.7998046875, -1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Cone "feet_6"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (5.25, -2.5, 1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_6"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = 30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (4.80078125, -1.7998046875, 1)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Cone "feet_7"
+        {
+            float xformOp:rotateX = 90
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.19995117)
+            double3 xformOp:translate = (4.25, -2.5, 3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Cylinder "leg_7"
+        {
+            float xformOp:rotateX = 90
+            float xformOp:rotateY = 30
+            float3 xformOp:scale = (0.19995117, 0.13000488, 0.19995117)
+            double3 xformOp:translate = (3.80078125, -1.7998046875, 3)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+    }
+
+    def "arms"
+    {
+        def Cylinder "clawArm_0"
+        {
+            float xformOp:rotateX = 20
+            float xformOp:rotateY = -20
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.30004883)
+            double3 xformOp:translate = (-2.900390625, -1, 2.5)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Sphere "claw_0"
+        {
+            float3 xformOp:scale = (0.30004883, 0.15002441, 0.30004883)
+            double3 xformOp:translate = (-1.900390625, -2, 3.5)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+        }
+
+        def Cylinder "clawArm_1"
+        {
+            float xformOp:rotateX = 20
+            float xformOp:rotateY = 20
+            float3 xformOp:scale = (0.19995117, 0.19995117, 0.30004883)
+            double3 xformOp:translate = (2.900390625, -1, 2.5)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX", "xformOp:rotateY"]
+        }
+
+        def Sphere "claw_1"
+        {
+            float3 xformOp:scale = (0.30004883, 0.15002441, 0.30004883)
+            double3 xformOp:translate = (1.900390625, -2, 3.5)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+        }
+    }
+
+    def "eyes"
+    {
+        def Sphere "eye_0"
+        {
+            float3 xformOp:scale = (0.08001709, 0.14001465, 0.08001709)
+            double3 xformOp:translate = (-1.650390625, 0.89990234375, 14)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+        }
+
+        def Cylinder "eyeStalk_0"
+        {
+            float xformOp:rotateX = -20
+            float3 xformOp:scale = (0.099975586, 0.090026855, 0.19995117)
+            double3 xformOp:translate = (-1.400390625, 0.199951171875, 4.5)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+
+        def Sphere "eye_1"
+        {
+            float3 xformOp:scale = (0.08001709, 0.14001465, 0.08001709)
+            double3 xformOp:translate = (1.650390625, 0.89990234375, 14)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+        }
+
+        def Cylinder "eyeStalk_1"
+        {
+            float xformOp:rotateX = -20
+            float3 xformOp:scale = (0.099975586, 0.090026855, 0.19995117)
+            double3 xformOp:translate = (1.400390625, 0.199951171875, 4.5)
+            uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate", "xformOp:rotateX"]
+        }
+    }
+}
+

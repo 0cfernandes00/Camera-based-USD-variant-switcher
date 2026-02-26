@@ -1,0 +1,28 @@
+#usda 1.0
+def Xform "pickleBarrels" (
+    variants = {
+        string LOD = "pickleBarrels_LOD2"
+    }
+    prepend variantSets = ["LOD"]
+)
+{
+    variantSet "LOD" = {
+        "pickleBarrels_LOD0" {
+            def "pickleBarrels_LOD0" (
+                references = @./LODs/pickleBarrels_LOD0.usda@</pickleBarrels_LOD0>
+            ) {}
+        }
+
+        "pickleBarrels_LOD1" {
+            def "pickleBarrels_LOD1" (
+                references = @./LODs/pickleBarrels_LOD1.usda@</pickleBarrels_LOD1>
+            ) {}
+        }
+
+        "pickleBarrels_LOD2" {
+            def "pickleBarrels_LOD2" (
+                references = @./LODs/pickleBarrels_LOD2.usda@</pickleBarrels_LOD2>
+            ) {}
+        }
+    }
+}

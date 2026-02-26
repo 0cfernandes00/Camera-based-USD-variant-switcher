@@ -1,0 +1,32 @@
+#usda 1.0
+
+def Xform "beegCrab" (
+    prepend variantSets = "LOD"
+    variants = {
+        string LOD = "beegCrab_LOD0"
+    }
+    
+)
+{
+    variantSet "LOD" = {
+        "beegCrab_LOD0" {
+            def "beegCrab_LOD0" (
+                prepend references = @LODs/beegCrab_LOD0.usda@</beegCrab_LOD0>
+            ) 
+            {
+                float3 xformOp:rotateXYZ = (-90, 0, 0) # Rotate it becasue LOD0 is the only usd with upAxis = "Z" 
+                uniform token[] xformOpOrder = ["xformOp:rotateXYZ"]
+            }
+        }
+        "beegCrab_LOD1" {
+            def "beegCrab_LOD1" (
+                prepend references = @LODs/beegCrab_LOD1.usda@</beegCrab_LOD1>
+            ) {}
+        }
+        "beegCrab_LOD2" {
+            def "beegCrab_LOD2" (
+                prepend references = @LODs/beegCrab_LOD2.usda@</beegCrab_LOD2>
+            ) {}
+        }
+    }
+}

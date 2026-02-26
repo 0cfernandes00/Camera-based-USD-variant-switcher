@@ -1,0 +1,38 @@
+#usda 1.0
+(
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Xform "yugiohClockArc_LOD2"
+{
+    def Sphere "body"
+    {
+        float3 xformOp:scale = (30, 30, 30)
+        double3 xformOp:translate = (0, 2.5, 0)
+        uniform token[] xformOpOrder = ["xformOp:scale", "xformOp:translate"]
+
+        def Cube "head1"
+        {
+            float3 xformOp:rotateXYZ = (30, 0, 0)
+            float3 xformOp:scale = (0.375, 0.5, 0.375)
+            double3 xformOp:translate = (0, 1.25, 0.75)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+        }
+
+        def Cube "wing1"
+        {
+            float3 xformOp:scale = (1, 1, 0.125)
+            double3 xformOp:translate = (1.5, 1.25, -0.6)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "wing2"
+        {
+            float3 xformOp:scale = (1, 1, 0.125)
+            double3 xformOp:translate = (-1.5, 1.25, -0.6)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+    }
+}
+

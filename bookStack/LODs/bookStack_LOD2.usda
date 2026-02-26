@@ -1,0 +1,12 @@
+#usda 1.0
+
+def Xform "bookStack_LOD2"
+{
+    def Cube "cube0"
+    {
+        float3 xformOp:scale = (18, 22, 18)
+        double3 xformOp:translate = (0, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+}
+

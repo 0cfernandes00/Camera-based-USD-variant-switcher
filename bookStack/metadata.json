@@ -1,0 +1,26 @@
+{
+    "assetName": "bookStack.fbx",
+    "assetStructureVersion": "03.00.00",
+    "keywords": ["book", "books", "stack", "hardcover", "household", "decoration", "library", "prop", "study", "office"],
+    "hasTexture": false,
+    "commitHistory": [
+        {
+            "author": "claran",
+            "version": "03.00.00",
+            "timestamp": "2025-02-18T23:59:00-05:00",
+            "note": "Converted LODs to a variant set"
+        },
+        {
+            "author": "echou",
+            "version": "02.00.00",
+            "timestamp": "2025-02-07T17:08:00-05",
+            "note": "Added LODs"
+        },
+        {
+            "author": "echou",
+            "version": "01.00.00",
+            "timestamp": "2024-10-14T15:08:00-05",
+            "note": "Initial creation"
+        }
+    ]
+}

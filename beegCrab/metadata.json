@@ -1,0 +1,26 @@
+{
+  "assetName": "beegCrab.fbx",
+  "assetStructureVersion": "03.00.00",
+  "keywords": ["crab", "ocean", "shell", "creature", "animal"],
+  "hasTexture": false,
+  "commitHistory": [
+    {
+      "author": "soominp",
+      "version": "03.00.00",
+      "timestamp": "2025-02-17T22:34:00-05",
+      "note": "Converted LODs to a variant set"
+    }, 
+    {
+      "author": "geant",
+      "version": "02.00.00",
+      "timestamp": "2025-02-10T15:17:02-05",
+      "note": "Added LODs"
+    },
+    {
+      "author": "geant",
+      "version": "01.00.00",
+      "timestamp": "2024-04-21T21:17:05-05",
+      "note": "Initial creation"
+    }
+  ] 
+}

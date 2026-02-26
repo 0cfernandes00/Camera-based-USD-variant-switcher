@@ -1,0 +1,36 @@
+{
+    "assetName": "parkBench.fbx",
+    "author": [
+        "czw"
+    ],
+    "assetStructureVersion": "03.00.00",
+    "keywords": [
+        "bench",
+        "park",
+        "outside",
+        "seat",
+        "chair",
+        "furniture"
+    ],
+    "hasTexture": false,
+    "commitHistory": [
+        {
+            "author": "liuamy05",
+            "version": "03.00.00",
+            "timestamp": "2025-02-16T00:22:06-05",
+            "note": "Converted LODs to a variant set"
+        },
+        {
+            "author": "czw",
+            "version": "02.00.00",
+            "timestamp": "2025-02-10T16:59:44-05",
+            "note": "Added LODs"
+        },
+        {
+            "author": "czw",
+            "version": "01.00.00",
+            "timestamp": "2024-11-13T16:49:00-05",
+            "note": "Initial creation"
+        }
+    ]
+}

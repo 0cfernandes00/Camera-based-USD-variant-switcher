@@ -1,0 +1,529 @@
+#usda 1.0
+(
+    defaultPrim = "parkBench_LOD0"
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Xform "parkBench_LOD0" (
+    kind = "component"
+)
+{
+    float3 xformOp:translate:pivot = (-298.13324, 67.376854, 63.33631)
+    uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+    def Xform "legs"
+    {
+        float3 xformOp:translate:pivot = (-229.08022, -215.4893, -286.57047)
+        uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+        def Mesh "right_leg"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-73.33092, -1.4459882, -30.617329), (-61.985054, 110.74479, 47.32364)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4, 8, 9, 11, 10, 10, 11, 13, 12, 12, 13, 15, 14, 16, 17, 18, 19, 9, 15, 13, 11, 14, 8, 10, 12, 14, 15, 17, 16, 15, 9, 18, 17, 9, 8, 19, 18, 8, 14, 16, 19, 20, 21, 23, 22, 22, 23, 25, 24, 24, 25, 27, 26, 26, 27, 21, 20, 21, 27, 25, 23, 26, 20, 22, 24]
+            point3f[] points = [(-73.33092, 37.751423, -30.617329), (-62.040474, 37.751423, -30.617329), (-73.33092, 37.751423, 27.50495), (-62.040474, 37.751423, 27.50495), (-73.33092, 49.04184, 27.504951), (-62.040474, 49.04184, 27.504951), (-73.33092, 49.041706, -30.617329), (-62.040474, 49.041706, -30.617329), (-73.33092, 99.602325, 33.138344), (-62.040474, 99.602325, 33.138344), (-73.33092, 43.985, 16.258894), (-62.040474, 43.985, 16.258894), (-73.33092, 40.706074, 27.062658), (-62.040474, 40.706074, 27.062658), (-73.33092, 96.32356, 43.941853), (-62.040474, 96.32356, 43.941853), (-73.33092, 107.46603, 47.32364), (-62.040474, 107.46603, 47.32364), (-62.040474, 110.74479, 36.519875), (-73.33092, 110.74479, 36.519875), (-73.27537, -1.4459882, 7.2155323), (-61.985054, -1.4459882, 7.2155323), (-73.27537, 38.545204, 7.2155323), (-61.985054, 38.545204, 7.2155323), (-73.27537, 38.545204, -4.0746574), (-61.985054, 38.545204, -4.0746574), (-73.27537, -1.4459882, -4.0746574), (-61.985054, -1.4459882, -4.0746574)]
+            texCoord2f[] primvars:st = [(0.7752434, 0.3795996), (0.84897834, 0.3795996), (0.84897923, 0.7591865), (0.7752434, 0.759186), (0.21468824, 0.83436567), (0.14095336, 0.83436567), (0.14095336, 0.45477915), (0.2146892, 0.45477867), (0.45509312, 0.42291522), (0.384536, 0.40150222), (0.49477166, 0.038273834), (0.5653291, 0.05968792), (0.43300873, 0.49568477), (0.36245146, 0.4742717), (0.26637188, 0.36322844), (0.19581482, 0.38464147), (0.08557883, 0.02141409), (0.15613627, 0), (0.28845644, 0.43599796), (0.21789919, 0.45741105), (0.23660026, 0.00001257658), (0.3103358, 0.00001257658), (0.3103358, 0.2611882), (0.23660026, 0.2611882), (0.85075414, 0.00001257658), (0.9244897, 0.00001257658), (0.9244897, 0.26118815), (0.85075414, 0.26118815), (0.624222, 0.4457196), (0.69795805, 0.4457196), (0.69795805, 0.82530564), (0.624222, 0.82530564), (0.47320053, 0.36312172), (0.54693663, 0.36312172), (0.54693663, 0.74270844), (0.47320053, 0.74270844), (0.9262649, 0.6731201), (0.9262649, 0.5977417), (0.9983938, 0.5977417), (0.9983938, 0.6731201), (0.9262649, 0.7484984), (0.9262649, 0.6731201), (0.99839336, 0.6731201), (0.99839336, 0.7484984), (0.6997327, 0.82530534), (0.77346784, 0.82530534), (0.77346784, 0.8990408), (0.6997327, 0.8990408), (0.47823453, 0.82119673), (0.5519697, 0.82119673), (0.5519697, 0.8949322), (0.47823453, 0.8949322), (0.312111, 0.07374877), (0.312111, 0.00001257658), (0.3858465, 0.00001257658), (0.3858465, 0.07374877), (0.85075414, 0.8572751), (0.85075414, 0.7835392), (0.924489, 0.7835392), (0.924489, 0.8572751), (0, 0.34474137), (0.0753783, 0.34474137), (0.0753783, 0.71605736), (0, 0.71605736), (0, 0.27035135), (0.0753783, 0.27035135), (0.624222, 0.000012580538), (0.6996003, 0.000012580538), (0.6996003, 0.3713296), (0.624222, 0.3713296), (0.6996003, 0.4457196), (0.624222, 0.4457196), (0.9262649, 0.00001257658), (1, 0.00001257658), (1, 0.26118797), (0.9262649, 0.26118797), (0.85075414, 0.5223637), (0.92448926, 0.5223637), (0.92448926, 0.7835392), (0.85075414, 0.7835392)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [28, 29, 30, 31, 52, 53, 54, 55, 32, 33, 34, 35, 56, 57, 58, 59, 0, 1, 2, 3, 4, 5, 6, 7, 60, 61, 62, 63, 36, 37, 38, 39, 66, 67, 68, 69, 40, 41, 42, 43, 8, 9, 10, 11, 14, 15, 16, 17, 69, 68, 70, 71, 9, 8, 12, 13, 61, 60, 64, 65, 15, 14, 18, 19, 72, 73, 74, 75, 44, 45, 46, 47, 76, 77, 78, 79, 48, 49, 50, 51, 20, 21, 22, 23, 24, 25, 26, 27]
+            float3 xformOp:translate:pivot = (-67.657974, 54.649437, 8.353185)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2, 8, 18]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3, 9, 12, 13, 14, 15, 19]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0, 6, 16]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5, 11, 21]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4, 10, 20]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1, 7, 17]
+            }
+        }
+
+        def Mesh "left_leg"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(64.71972, -1.4459882, -30.617329), (76.06558, 110.74479, 47.32364)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4, 8, 9, 11, 10, 10, 11, 13, 12, 12, 13, 15, 14, 16, 17, 18, 19, 9, 15, 13, 11, 14, 8, 10, 12, 14, 15, 17, 16, 15, 9, 18, 17, 9, 8, 19, 18, 8, 14, 16, 19, 20, 21, 23, 22, 22, 23, 25, 24, 24, 25, 27, 26, 26, 27, 21, 20, 21, 27, 25, 23, 26, 20, 22, 24]
+            point3f[] points = [(64.71972, 37.751423, -30.617329), (76.01016, 37.751423, -30.617329), (64.71972, 37.751423, 27.50495), (76.01016, 37.751423, 27.50495), (64.71972, 49.04184, 27.504951), (76.01016, 49.04184, 27.504951), (64.71972, 49.041706, -30.617329), (76.01016, 49.041706, -30.617329), (64.71972, 99.602325, 33.138344), (76.01016, 99.602325, 33.138344), (64.71972, 43.985, 16.258894), (76.01016, 43.985, 16.258894), (64.71972, 40.706074, 27.062658), (76.01016, 40.706074, 27.062658), (64.71972, 96.32356, 43.941853), (76.01016, 96.32356, 43.941853), (64.71972, 107.46603, 47.32364), (76.01016, 107.46603, 47.32364), (76.01016, 110.74479, 36.519875), (64.71972, 110.74479, 36.519875), (64.77527, -1.4459882, 7.2155323), (76.06558, -1.4459882, 7.2155323), (64.77527, 38.545204, 7.2155323), (76.06558, 38.545204, 7.2155323), (64.77527, 38.545204, -4.0746574), (76.06558, 38.545204, -4.0746574), (64.77527, -1.4459882, -4.0746574), (76.06558, -1.4459882, -4.0746574)]
+            texCoord2f[] primvars:st = [(0.3272131, 0.48650572), (0.40094805, 0.48650572), (0.40094894, 0.8660927), (0.3272131, 0.86609215), (0.84897834, 0.37959963), (0.7752434, 0.37959963), (0.7752434, 0.000013053417), (0.84897923, 0.00001257658), (0.38461643, 0.38464785), (0.31405935, 0.36323482), (0.42429495, 0.0000064373016), (0.4948524, 0.021420524), (0.36253205, 0.4574174), (0.29197478, 0.4360043), (0.18079305, 0.36322844), (0.11023599, 0.38464147), (0, 0.02141409), (0.070557445, 0), (0.20287761, 0.43599796), (0.13232034, 0.45741105), (0.54871124, 0.5600211), (0.6224468, 0.5600211), (0.6224468, 0.82119673), (0.54871124, 0.82119673), (0.85075414, 0.26118815), (0.9244897, 0.26118815), (0.9244897, 0.5223637), (0.85075414, 0.5223637), (0.25170237, 0.44714034), (0.3254385, 0.44714034), (0.3254385, 0.8267264), (0.25170237, 0.8267264), (0.6997327, 0.4457186), (0.7734688, 0.4457186), (0.7734688, 0.82530534), (0.6997327, 0.82530534), (0.9262649, 0.5977417), (0.9262649, 0.52236336), (0.9983938, 0.52236336), (0.9983938, 0.5977417), (0.9262649, 0.8238767), (0.9262649, 0.7484984), (0.99839336, 0.7484984), (0.99839336, 0.8238767), (0.55374527, 0.82530564), (0.62748045, 0.82530564), (0.62748045, 0.8990411), (0.55374527, 0.8990411), (0.40272385, 0.8164447), (0.47645897, 0.8164447), (0.47645897, 0.8901802), (0.40272385, 0.8901802), (0.40272385, 0.8164447), (0.40272385, 0.74270844), (0.47645935, 0.74270844), (0.47645935, 0.8164447), (0.7752434, 0.83292246), (0.7752434, 0.7591865), (0.8489784, 0.7591865), (0.8489784, 0.83292246), (0.6997327, 0.07440261), (0.775111, 0.07440261), (0.775111, 0.4457186), (0.6997327, 0.4457186), (0.6997327, 0.000012580538), (0.775111, 0.000012580538), (0.54871124, 0.114314064), (0.62408954, 0.114314064), (0.62408954, 0.4856311), (0.54871124, 0.4856311), (0.62408954, 0.5600211), (0.54871124, 0.5600211), (0.9262649, 0.26118797), (1, 0.26118797), (1, 0.52236336), (0.9262649, 0.52236336), (0, 0.71605736), (0.07373512, 0.71605736), (0.07373512, 0.9772328), (0, 0.9772328)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [28, 29, 30, 31, 52, 53, 54, 55, 32, 33, 34, 35, 56, 57, 58, 59, 0, 1, 2, 3, 4, 5, 6, 7, 60, 61, 62, 63, 36, 37, 38, 39, 66, 67, 68, 69, 40, 41, 42, 43, 8, 9, 10, 11, 14, 15, 16, 17, 69, 68, 70, 71, 9, 8, 12, 13, 61, 60, 64, 65, 15, 14, 18, 19, 72, 73, 74, 75, 44, 45, 46, 47, 76, 77, 78, 79, 48, 49, 50, 51, 20, 21, 22, 23, 24, 25, 26, 27]
+            float3 xformOp:translate:pivot = (70.39265, 54.649437, 8.353185)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2, 8, 18]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3, 9, 12, 13, 14, 15, 19]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0, 6, 16]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5, 11, 21]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4, 10, 20]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1, 7, 17]
+            }
+        }
+    }
+
+    def Xform "top_seat"
+    {
+        float3 xformOp:translate:pivot = (-228.6988, 462.0935, -81.424255)
+        uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+        def Mesh "top_1"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-84.705635, 95.20484, 29.690638), (87.440155, 107.74672, 35.572563)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+            point3f[] points = [(-84.705635, 107.74672, 33.353386), (87.440155, 107.74672, 33.353645), (-84.705635, 95.89044, 29.690638), (87.440155, 95.89044, 29.690638), (-84.705635, 95.20487, 31.909815), (87.440155, 95.20484, 31.909815), (-84.705635, 107.06112, 35.572563), (87.440155, 107.06112, 35.572563)]
+            texCoord2f[] primvars:st = [(0.18286642, 0.9280386), (0.1953877, 0.9280387), (0.19538781, 0.99493665), (0.18286642, 0.99493665), (0.31033233, 0.9949364), (0.29781103, 0.9949364), (0.29781103, 0.92803866), (0.31033245, 0.92803866), (0.6112965, 0.9280392), (0.61129636, 0), (0.6781944, 0), (0.6781944, 0.9280392), (0.6792182, 0.9280389), (0.6792182, 0), (0.7461161, 0), (0.7461161, 0.9280389), (0.8934331, 0.9280368), (0.8934331, 0), (0.9059545, 0), (0.9059545, 0.9280368), (0.9874787, 0.9280373), (0.9874787, 0), (1, 0), (1, 0.9280373)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [8, 9, 10, 11, 16, 17, 18, 19, 12, 13, 14, 15, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7]
+            float3 xformOp:translate:pivot = (1.3672628, 101.13298, 33.741238)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1]
+            }
+        }
+
+        def Mesh "top_2"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-84.705574, 82.28254, 25.698566), (87.440155, 94.82441, 31.580486)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+            point3f[] points = [(-84.705574, 94.82441, 29.36131), (87.440155, 94.82441, 29.36131), (-84.705574, 82.96814, 25.698566), (87.440155, 82.96813, 25.698566), (-84.705574, 82.28254, 27.917477), (87.440155, 82.28254, 27.91774), (-84.705574, 94.13882, 31.580486), (87.440155, 94.13882, 31.580486)]
+            texCoord2f[] primvars:st = [(0.23511398, 0.9280386), (0.24763522, 0.92803884), (0.24763532, 0.99493694), (0.23511398, 0.99493694), (0.17971338, 0.9949369), (0.16719216, 0.9949369), (0.16719216, 0.9280387), (0.1797135, 0.9280386), (0.06792203, 0.9280387), (0.06792182, 0), (0.13481997, 0), (0.13481997, 0.9280387), (0.4075309, 0.9280391), (0.407531, 0), (0.47442895, 0), (0.47442895, 0.9280391), (0.83073604, 0.92804074), (0.83073604, 0), (0.84325737, 0), (0.84325737, 0.92804074), (0.9091074, 0.9280415), (0.9091074, 0), (0.9216286, 0), (0.9216286, 0.9280415)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [8, 9, 10, 11, 16, 17, 18, 19, 12, 13, 14, 15, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7]
+            float3 xformOp:translate:pivot = (1.36729, 88.210686, 29.749002)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1]
+            }
+        }
+
+        def Mesh "top_3"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-84.70557, 69.22152, 21.66343), (87.44022, 81.76342, 27.545351)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+            point3f[] points = [(-84.70557, 81.76339, 25.326174), (87.44022, 81.76342, 25.326439), (-84.70557, 69.90715, 21.66343), (87.44022, 69.90712, 21.66343), (-84.70557, 69.22152, 23.882608), (87.44022, 69.22152, 23.882607), (-84.70557, 81.077835, 27.545351), (87.44022, 81.07779, 27.545351)]
+            texCoord2f[] primvars:st = [(0.2664625, 0.9280386), (0.27898374, 0.9280387), (0.27898386, 0.9949368), (0.2664625, 0.9949368), (0.23196094, 0.99493694), (0.21943972, 0.99493694), (0.21943972, 0.92803884), (0.23196106, 0.9280386), (0.54337466, 0.9280391), (0.54337454, 0), (0.6102726, 0), (0.6102726, 0.9280391), (0.20376545, 0.9280386), (0.20376568, 0), (0.27066362, 0), (0.27066362, 0.9280386), (0.86208457, 0.92804074), (0.86208457, 0), (0.8746059, 0), (0.8746059, 0.92804074), (0.9404559, 0.92804146), (0.9404559, 0), (0.9529771, 0), (0.9529771, 0.92804146)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [8, 9, 10, 11, 16, 17, 18, 19, 12, 13, 14, 15, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7]
+            float3 xformOp:translate:pivot = (1.3673177, 75.14967, 25.713915)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1]
+            }
+        }
+    }
+
+    def Xform "bottom_seat"
+    {
+        float3 xformOp:translate:pivot = (-228.6989, -215.4893, -286.57047)
+        uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+        def Mesh "bottom_1"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-84.705635, 48.961967, -25.814558), (87.440155, 51.284603, -13.405348)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+            point3f[] points = [(-84.705635, 48.961967, -25.814556), (87.440155, 48.961967, -25.814558), (-84.705635, 48.961967, -13.405348), (87.440155, 48.961967, -13.405348), (-84.705635, 51.284603, -13.405348), (87.440155, 51.284603, -13.405348), (-84.705635, 51.284603, -25.814556), (87.440155, 51.284603, -25.814556)]
+            texCoord2f[] primvars:st = [(0.25078824, 0.9280386), (0.26330948, 0.92803884), (0.2633096, 0.9949369), (0.25078824, 0.9949369), (0.294658, 0.9949367), (0.28213677, 0.9949367), (0.28213677, 0.92803866), (0.29465812, 0.92803866), (0.27168748, 0.92803866), (0.27168727, 0), (0.3385854, 0), (0.3385854, 0.92803866), (0.74713993, 0.9280387), (0.74713993, 0), (0.8140379, 0), (0.8140379, 0.9280387), (0.87775886, 0.92804074), (0.87775886, 0), (0.8902802, 0), (0.8902802, 0.92804074), (0.97180444, 0.9280416), (0.97180444, 0), (0.98432565, 0), (0.98432565, 0.9280416)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [8, 9, 10, 11, 16, 17, 18, 19, 12, 13, 14, 15, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7]
+            float3 xformOp:translate:pivot = (1.3672636, 51.28459, -19.609818)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1]
+            }
+        }
+
+        def Mesh "bottom_2"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-84.705574, 48.961967, -12.289514), (87.440155, 51.284603, 0.11968994)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+            point3f[] points = [(-84.705574, 48.961967, -12.289513), (87.440155, 48.961967, -12.289514), (-84.705574, 48.961967, 0.11968899), (87.440155, 48.961967, 0.11968899), (-84.705574, 51.284603, 0.11968994), (87.440155, 51.284603, 0.11968899), (-84.705574, 51.284603, -12.289513), (87.440155, 51.284603, -12.289513)]
+            texCoord2f[] primvars:st = [(0.20376545, 0.9280386), (0.21628667, 0.92803884), (0.2162868, 0.99493694), (0.20376545, 0.99493694), (0.16403912, 0.9949369), (0.1515179, 0.9949369), (0.1515179, 0.9280387), (0.16403924, 0.9280386), (2.2124732e-7, 0.9280387), (0, 0), (0.06689815, 0), (0.06689815, 0.9280387), (0.3396091, 0.9280391), (0.33960918, 0), (0.40650716, 0), (0.40650716, 0.9280391), (0.8150618, 0.92804074), (0.8150618, 0), (0.82758313, 0), (0.82758313, 0.92804074), (0.9247816, 0.9280415), (0.9247816, 0), (0.9373029, 0), (0.9373029, 0.9280415)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [8, 9, 10, 11, 16, 17, 18, 19, 12, 13, 14, 15, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7]
+            float3 xformOp:translate:pivot = (1.3672909, 51.28459, -6.084889)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1]
+            }
+        }
+
+        def Mesh "bottom_3"
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-84.70557, 48.961967, 1.3806505), (87.44022, 51.284603, 13.789862)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+            point3f[] points = [(-84.70557, 48.961967, 1.3806515), (87.44022, 48.961967, 1.3806505), (-84.70557, 48.961967, 13.789861), (87.44022, 48.961967, 13.789861), (-84.70557, 51.284603, 13.789862), (87.44022, 51.284603, 13.789861), (-84.70557, 51.284603, 1.3806515), (87.44022, 51.284603, 1.3806515)]
+            texCoord2f[] primvars:st = [(0.13584363, 0.9280386), (0.14836487, 0.9280387), (0.14836498, 0.9949368), (0.13584363, 0.9949368), (0.90595436, 0.99493515), (0.8934331, 0.99493515), (0.8934331, 0.92803705), (0.9059545, 0.9280368), (0.4754528, 0.9280391), (0.47545272, 0), (0.54235077, 0), (0.54235077, 0.9280391), (0.13584363, 0.9280386), (0.13584386, 0), (0.20274179, 0), (0.20274179, 0.9280386), (0.84641033, 0.92804074), (0.84641033, 0), (0.85893166, 0), (0.85893166, 0.92804074), (0.95613015, 0.92804146), (0.95613015, 0), (0.9686514, 0), (0.9686514, 0.92804146)] (
+                customData = {
+                    dictionary Maya = {
+                        token name = "map1"
+                    }
+                }
+                interpolation = "faceVarying"
+            )
+            int[] primvars:st:indices = [8, 9, 10, 11, 16, 17, 18, 19, 12, 13, 14, 15, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7]
+            float3 xformOp:translate:pivot = (1.3673184, 51.28459, 7.5852194)
+            uniform token[] xformOpOrder = ["xformOp:translate:pivot", "!invert!xformOp:translate:pivot"]
+
+            def GeomSubset "back"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [2]
+            }
+
+            def GeomSubset "bottom"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [3]
+            }
+
+            def GeomSubset "front"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [0]
+            }
+
+            def GeomSubset "left"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [5]
+            }
+
+            def GeomSubset "right"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [4]
+            }
+
+            def GeomSubset "top"
+            {
+                uniform token elementType = "face"
+                uniform token familyName = "componentTag"
+                int[] indices = [1]
+            }
+        }
+    }
+}
+

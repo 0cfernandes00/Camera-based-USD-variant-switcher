@@ -1,0 +1,26 @@
+#usda 1.0
+def Xform "teapot" (
+    prepend variantSets = "LOD"
+    variants = {
+        string LOD = "teapot_LOD0"
+    }    
+)
+{
+    variantSet "LOD" = {
+        "teapot_LOD0" {
+            def "teapot_LOD0" (
+                prepend references = @./LODs/teapot_LOD0.usda@</teapot_LOD0>
+            ) {}
+        }
+        "teapot_LOD1" {
+            def "teapot_LOD1" (
+                prepend references = @./LODs/teapot_LOD1.usda@</teapot_LOD1>
+            ) {}
+        }
+        "teapot_LOD2" {
+            def "teapot_LOD2" (
+                prepend references = @./LODs/teapot_LOD2.usda@</teapot_LOD2>
+            ) {}
+        }
+    }
+}

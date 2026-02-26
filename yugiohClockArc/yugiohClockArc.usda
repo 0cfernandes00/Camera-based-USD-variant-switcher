@@ -1,0 +1,29 @@
+#usda 1.0
+
+def Xform "yugiohClockArc" (
+    variantSets = "LOD"
+    variants = {
+        string LOD = "yugiohClockArc_LOD0"
+    }
+)
+{
+    variantSet "LOD" = {
+        "yugiohClockArc_LOD0" {
+            def "yugiohClockArc_LOD0" (
+                references = @./LODs/yugiohClockArc_LOD0.usda@</yugiohClockArc_LOD0>
+            ) {}
+        }
+
+        "yugiohClockArc_LOD1" {
+            def "yugiohClockArc_LOD1" (
+                references = @./LODs/yugiohClockArc_LOD1.usda@</yugiohClockArc_LOD1>
+            ) {}
+        }
+
+        "yugiohClockArc_LOD2" {
+            def "yugiohClockArc_LOD2" (
+                references = @./LODs/yugiohClockArc_LOD2.usda@</yugiohClockArc_LOD2>
+            ) {}
+        }
+    }
+}

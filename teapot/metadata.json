@@ -1,0 +1,26 @@
+{
+	"assetName": "teapot.fbx",
+	"assetStructureVersion": "03.00.00",
+	"keywords": [ "teapot", "tea", "pot", "dish", "kitchen", "household", "prop", "decoration", "furniture" ],
+	"hasTexture": false,
+	"commitHistory": [
+		{
+			"author": "chuu",
+			"version": "03.00.00",
+			"timestamp": "2025-02-17T08:08:00-05",
+			"note": "Converted LODs to a variant set"
+		},
+		{
+			"author": "raclin",
+			"version": "02.00.00",
+			"timestamp": "2025-02-09T10:30:00-05",
+			"note": "Added LODs"
+		},
+		{
+			"author": "raclin",
+			"version": "01.00.00",
+			"timestamp": "2025-02-04T02:02:00-05",
+			"note": "Initial creation"
+		}
+	]
+}

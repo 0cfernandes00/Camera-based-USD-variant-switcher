@@ -1,0 +1,32 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "parkBench" (
+    variants = {
+        string LOD = "parkBench_LOD0"
+    }
+    prepend variantSets = "LOD"
+)
+{
+    variantSet "LOD" = {
+        "parkBench_LOD0" (
+            prepend references = @./LODs/parkBench_LOD0.usda@</parkBench_LOD0>
+        ) {
+
+        }
+        "parkBench_LOD1" (
+            prepend references = @./LODs/parkBench_LOD1.usda@</parkBench_LOD1>
+        ) {
+
+        }
+        "parkBench_LOD2" (
+            prepend references = @./LODs/parkBench_LOD2.usda@</parkBench_LOD2>
+        ) {
+
+        }
+    }
+}
+

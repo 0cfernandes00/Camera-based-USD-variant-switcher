@@ -1,0 +1,65 @@
+#usda 1.0
+
+def Xform "cafeTable_LOD1"
+{
+    def Sphere "Sphere"
+    {
+        double radius = 4.1
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (3, 2.5, 3)
+        double3 xformOp:translate = (0, 38, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+    }
+
+    def Cube "Leg1"
+    {
+        float3 xformOp:rotateXYZ = (30, 0, 0)
+        float3 xformOp:scale = (2.5, 2.5, 25)
+        double3 xformOp:translate = (0, 14.8, 25)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+    }
+
+    def Cube "Leg2"
+    {
+        float3 xformOp:rotateXYZ = (-30, 60, 0)
+        float3 xformOp:scale = (2.5, 2.5, 25)
+        double3 xformOp:translate = (-24, 14.8, -13)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+    }
+
+    def Cube "Leg3"
+    {
+        float3 xformOp:rotateXYZ = (30, 120, 0)
+        float3 xformOp:scale = (2.5, 2.5, 25)
+        double3 xformOp:translate = (24, 14.8, -14)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+    }
+
+    def Cylinder "BottomConnector"
+    {
+        uniform token axis = "Y"
+        double height = 11
+        double radius = 7
+        double3 xformOp:translate = (0, 25, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Cylinder "TopConnector"
+    {
+        uniform token axis = "Y"
+        double height = 15
+        double radius = 7
+        double3 xformOp:translate = (0, 52, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Cylinder "Platform"
+    {
+        uniform token axis = "Y"
+        double height = 7
+        double radius = 45
+        double3 xformOp:translate = (0, 62.5, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}
+

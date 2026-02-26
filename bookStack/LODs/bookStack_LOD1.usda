@@ -1,0 +1,77 @@
+#usda 1.0
+
+def Xform "bookStack_LOD1"
+{
+    def Cube "cube0"
+    {
+        float3 xformOp:rotateXYZ = (0, -67.62971, 0)
+        float3 xformOp:scale = (9.2448435, 1.3561398, 5.5500026)
+        double3 xformOp:translate = (0, 44.02852249145508, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube1"
+    {
+        float3 xformOp:rotateXYZ = (0, 261.06052, 0)
+        float3 xformOp:scale = (7.189237, 1.86688, 8.714225)
+        double3 xformOp:translate = (0, 40.80550765991211, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube2"
+    {
+        float3 xformOp:rotateXYZ = (0, -54.066677, 0)
+        float3 xformOp:scale = (9.016877, 1.931718, 7.4389234)
+        double3 xformOp:translate = (0, 37.00690841674805, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube3"
+    {
+        float3 xformOp:rotateXYZ = (0, -55.00387, 0)
+        float3 xformOp:scale = (9.821219, 2.2432268, 12.537726)
+        double3 xformOp:translate = (0, 32.83196258544922, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube4"
+    {
+        float3 xformOp:rotateXYZ = (0, -77.66634, 0)
+        float3 xformOp:scale = (11.223515, 2.4157553, 9.9141035)
+        double3 xformOp:translate = (0, 28.17298126220703, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube5"
+    {
+        float3 xformOp:rotateXYZ = (0, 242.35089, 0)
+        float3 xformOp:scale = (13.78755, 2.9676409, 12.179)
+        double3 xformOp:translate = (0, 22.78958511352539, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube6"
+    {
+        float3 xformOp:rotateXYZ = (0, -64.370575, 0)
+        float3 xformOp:scale = (14.294709, 3.0768008, 12.62699)
+        double3 xformOp:translate = (0, 16.74514389038086, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube7"
+    {
+        float3 xformOp:rotateXYZ = (0, -60.60973, 0)
+        float3 xformOp:scale = (10.454938, 3.673441, 12.156902)
+        double3 xformOp:translate = (0, 9.994902610778809, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+
+    def Cube "cube8"
+    {
+        float3 xformOp:rotateXYZ = (0, -67.62971, 0)
+        float3 xformOp:scale = (12.971434, 3.1607308, 14.684646)
+        double3 xformOp:translate = (0, 3.1607308387756348, 0)
+        uniform token[] xformOpOrder = ["xformOp:rotateXYZ", "xformOp:translate", "xformOp:scale"]
+    }
+}
+
