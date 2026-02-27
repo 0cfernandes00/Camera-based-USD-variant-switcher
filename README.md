@@ -22,8 +22,13 @@ The baseline is set to the following thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-
 ### Depth of Field
 
 I approximate the depth of field for the object to calculate how blurry the object will be at render time to generate an LOD for this parameter.
-
+I use the following equation with maya's camera attributes.
+obj_dist = object distance from camera
 abs( (focal_length / fstop) * focal_length * (obj_dist - focus_dist) / obj_dist * (focus_dist - focal_length) )
+
+### Velocity Based / Motion Blur
+
+I caculate an object's distance over time and objects moving past a certain threshold have lower LODs.
 
 ### Frustum Culling
 
