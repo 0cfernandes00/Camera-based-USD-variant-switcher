@@ -7,8 +7,9 @@ This project was inspired from my CIS 7000 Production Pipelines professor Rebecc
 
 Distance Based
 
-![Tool Demo](variant_update_new.gif)
+![Tool Demo](ui_demo.gif)
 
+![ui](UI.png)
 
 ### Distance Based
 
