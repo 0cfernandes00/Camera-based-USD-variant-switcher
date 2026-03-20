@@ -6,7 +6,8 @@ import math
 import maya.OpenMayaUI as OpenMayaUI
 import maya.OpenMaya as OpenMaya
 
-# Get the scene's camera position
+# Get the scene's camera 
+camera_obj = 'camera1'
 camera_pos = None
 focal_length = None
 focus_dist = None
@@ -486,7 +487,3 @@ def run_switching(thresholds):
         select_variant_from_varaint_set(target_prim, "LOD", asset + var_swap)
 
 create_lod_ui()
-
-        
-        
-
