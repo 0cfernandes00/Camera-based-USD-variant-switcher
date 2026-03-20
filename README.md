@@ -4,9 +4,6 @@ Personal Project began over Winter 2026 in Autodesk Maya with Python USD API.
 This project was inspired from my CIS 7000 Production Pipelines professor Rebecca Hallac and my TD friend Julia DeLaney.
 
 ## Demo
-
-Distance Based
-
 ![Tool Demo](ui_demo.gif)
 
 ![ui](UI.png)
