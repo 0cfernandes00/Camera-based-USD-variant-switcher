@@ -3,6 +3,8 @@
 Personal Project began over Winter 2026 in Autodesk Maya with Python USD API.
 This project was inspired from my CIS 7000 Production Pipelines professor Rebecca Hallac and my TD friend Julia DeLaney.
 
+Future work will include further exploration of USD layer editing. Currently, the tool requires the use of usd proxy nodes and the api call SetVariantSelection is an in-memory solution that doesn't get exported to the usd file. I'd be interested in exploring more layer composition editing.
+
 ## Demo
 ![Tool Demo](ui_demo.gif)
 
@@ -10,9 +12,13 @@ This project was inspired from my CIS 7000 Production Pipelines professor Rebecc
 
 ### Distance Based
 
+![Distance](variant_update_new.gif)
+
 The LOD is determined by the object's distance from camera. Distance thresholds: < 15cm = LOD0, > 15cm = LOD1, > 30cm = LOD2
 
 ### Screen Space Coverage
+
+![Screen Space](screen_space_based.gif)
 
 The LOD value is determined by projecting the world coordinates back into screen space and calculating what percentage the screen space bounding box occupies.
 The baseline is set to the following thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2
@@ -21,7 +27,9 @@ The baseline is set to the following thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-
 
 I approximate the depth of field for the object to calculate how blurry the object will be at render time to generate an LOD for this parameter.
 I use the following equation with maya's camera attributes.
+
 obj_dist = object distance from camera
+
 abs( (focal_length / fstop) * focal_length * (obj_dist - focus_dist) / obj_dist * (focus_dist - focal_length) )
 
 ### Velocity Based / Motion Blur
