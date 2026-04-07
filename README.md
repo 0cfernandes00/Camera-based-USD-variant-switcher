@@ -8,17 +8,17 @@ Future work will include further exploration of USD layer editing. Currently, th
 ## Demo
 ![Tool Demo](ui_demo.gif)
 
-![ui](UI.png)
+<img src="UI.png" width="200"> 
 
 ### Distance Based
 
-![Distance](variant_update_new.gif)
+<img src="variant_update_new.gif" width="400"> 
 
 The LOD is determined by the object's distance from camera. Distance thresholds: < 15cm = LOD0, > 15cm = LOD1, > 30cm = LOD2
 
 ### Screen Space Coverage
 
-![Screen Space](screen_space_based.gif)
+<img src="screen_space_based.gif" width="400"> 
 
 The LOD value is determined by projecting the world coordinates back into screen space and calculating what percentage the screen space bounding box occupies.
 The baseline is set to the following thresholds: >10% = LOD0, 1-10% = LOD1, 0.1-1% = LOD2
